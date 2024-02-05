@@ -1,4 +1,4 @@
-import FastFoodItem from "../fastfood-item/fastfood-item.jsx";
+import FastFoodItems from "../fastfood-item/fastfood-items.jsx";
 
 const FastFoodList = ({fastFoodItems}) => {
     return (
@@ -7,7 +7,7 @@ const FastFoodList = ({fastFoodItems}) => {
                 fastFoodItems.map((fastfood) => {
                     return (
                         <div className='col-md-4 col-sm-6 mb-grid-gutter' key={fastfood.id}>
-                            <FastFoodItem {...fastfood}/>
+                            <FastFoodItems {...fastfood}/>
                         </div>
                     )
                 })

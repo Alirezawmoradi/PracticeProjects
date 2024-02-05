@@ -25,12 +25,13 @@ const FastFood = () => {
         <div className='wrapper bg-faded-dark'>
             <Header/>
             <CategoryList/>
-            {
-                loading ? <Loading theme='dark'/> :
-                    <div className='container mt-4'>
+            <div className='container mt-4'>
+                {
+                    loading ? <Loading theme='dark'/>
+                        :
                         <FastFoodList fastFoodItems={fastFoodItems}/>
-                    </div>
-            }
+                }
+            </div>
         </div>
     )
 }

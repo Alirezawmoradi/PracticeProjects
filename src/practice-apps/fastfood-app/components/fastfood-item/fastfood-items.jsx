@@ -1,12 +1,25 @@
-import {HiShoppingCart} from 'react-icons/hi'
+import {HiShoppingCart} from 'react-icons/hi';
+import {useEffect, useState} from "react";
+import ImagePlaceholder from "../image-placeholder/image-placeholder.jsx";
 
-const FastFoodItem = ({name, price, ingredients, imageUrl}) => {
+const FastFoodItems = ({name, price, ingredients, imageUrl}) => {
+    const [imagePlaceholder, setImagePlaceholder] = useState(true);
+
+    useEffect(() => {
+        setImagePlaceholder(imageUrl)
+    }, [imageUrl]);
+
     return (
         <div className='card product-card h-100 border-0 shadow-sm pb-1'>
             <span className='badge badge-end badge-shadow bg-success fs-md fw-medium'>
                 قیمت : {price.toLocaleString()} تومان
             </span>
-            <img className='card-img-top' src={imageUrl} alt='فست فودها'/>
+            {
+                imagePlaceholder ? <ImagePlaceholder imageUrl={imageUrl}/>
+                    :
+                    <img className='card-img-top' src={imageUrl} alt='فست فودها'/>
+            }
+
             <div className='card-body text-center pt-3 pb-4 d-flex flex-column'>
                 <h5 className='mb-2'>{name}</h5>
                 <div className='fs-sm fw-bold text-muted mb-3'>{ingredients}</div>
@@ -18,4 +31,4 @@ const FastFoodItem = ({name, price, ingredients, imageUrl}) => {
         </div>
     )
 }
-export default FastFoodItem;
+export default FastFoodItems;
