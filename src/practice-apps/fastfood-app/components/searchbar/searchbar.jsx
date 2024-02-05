@@ -1,14 +1,14 @@
 import {BsSearch} from "react-icons/bs";
 import {useState} from "react";
 
-const SearchBar = () => {
+const SearchBar = ({searchItems}) => {
     const [value, setValue] = useState('');
     const handleValue = (e) => {
         setValue(e.target.value)
     }
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(value)
+        searchItems(value)
     }
     return (
         <form onSubmit={onSubmit} className='search flex-fill d-flex align-items-center'>

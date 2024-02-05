@@ -5,6 +5,7 @@ import axios from "../../core/axios.js";
 import Loading from "./components/loading/loading.jsx";
 import FastFoodItems from "./components/fastfood-list/fastfood-list.jsx";
 import FastFoodList from "./components/fastfood-list/fastfood-list.jsx";
+import Searchbar from "./components/searchbar/searchbar.jsx";
 
 const FastFood = () => {
     const [loading, setLoading] = useState(false);
@@ -13,6 +14,13 @@ const FastFood = () => {
     const fetchData = async (categoryId = null) => {
         setLoading(true);
         const response = await axios.get(`/FastFood/list/${categoryId ? '?categoryId=' + categoryId : ''}`);
+        setLoading(false);
+        setFastFoodItems(response.data)
+    }
+
+    const searchItems = async (term) => {
+        setLoading(true);
+        const response = await axios.get(`/FastFood/search/${term ? '?term=' + term : ''}`)
         setLoading(false);
         setFastFoodItems(response.data)
     }
@@ -28,7 +36,9 @@ const FastFood = () => {
     return (
         <div className='wrapper bg-faded-dark'>
             <Header/>
-            <CategoryList filterItems={filterItems}/>
+            <CategoryList filterItems={filterItems}>
+                <Searchbar searchItems={searchItems}/>
+            </CategoryList>
             <div className='container mt-4'>
                 {
                     loading ? <Loading theme='dark'/>
