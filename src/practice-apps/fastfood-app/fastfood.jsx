@@ -12,7 +12,7 @@ const FastFood = () => {
 
     const fetchData = async (categoryId = null) => {
         setLoading(true);
-        const response = await axios.get(`/FastFood/list/${categoryId ? '?categoryId' + categoryId : ''}`);
+        const response = await axios.get(`/FastFood/list/${categoryId ? '?categoryId=' + categoryId : ''}`);
         setLoading(false);
         setFastFoodItems(response.data)
     }
@@ -21,10 +21,14 @@ const FastFood = () => {
         fetchData();
     }, []);
 
+    const filterItems = (categoryId) => {
+        fetchData(categoryId);
+    }
+
     return (
         <div className='wrapper bg-faded-dark'>
             <Header/>
-            <CategoryList/>
+            <CategoryList filterItems={filterItems}/>
             <div className='container mt-4'>
                 {
                     loading ? <Loading theme='dark'/>

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "../../../../core/axios.js";
 import Loading from "../loading/loading.jsx";
 
-const CategoryList = () => {
+const CategoryList = ({filterItems}) => {
 
     const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState([]);
@@ -23,16 +23,17 @@ const CategoryList = () => {
                     loading ? <Loading theme='primary'/>
                         :
                         <ul className='nav'>
-                            <li className='nav-item'>
+                            <li className='nav-item' onClick={() => filterItems()}>
                                 <a className='nav-link' href='#'>
                                     همه فست فودها
                                 </a>
                             </li>
                             {
-                                categories.map((categories) => (
-                                    <li className='nav-item' key={categories.id}>
+                                categories.map((category) => (
+                                    <li className='nav-item' key={category.id}
+                                        onClick={() => filterItems(category.id)}>
                                         <a className='nav-link' href='#'>
-                                            {categories.name}
+                                            {category.name}
                                         </a>
                                     </li>
                                 ))
