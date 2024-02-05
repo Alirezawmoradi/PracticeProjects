@@ -3,7 +3,8 @@ import CategoryList from "./components/category-list/category-list.jsx";
 import {useEffect, useState} from "react";
 import axios from "../../core/axios.js";
 import Loading from "./components/loading/loading.jsx";
-import FastFoodItems from "./components/fastfood-items/fastfood-items.jsx";
+import FastFoodItems from "./components/fastfood-list/fastfood-list.jsx";
+import FastFoodList from "./components/fastfood-list/fastfood-list.jsx";
 
 const FastFood = () => {
     const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ const FastFood = () => {
             {
                 loading ? <Loading theme='dark'/> :
                     <div className='container mt-4'>
-                        <FastFoodItems fastFoodItems={fastFoodItems}/>
+                        <FastFoodList fastFoodItems={fastFoodItems}/>
                     </div>
             }
         </div>
