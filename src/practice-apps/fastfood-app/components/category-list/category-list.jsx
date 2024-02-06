@@ -1,21 +1,11 @@
-import {useEffect, useState} from "react";
-import axios from "../../../../core/axios.js";
 import Loading from "../loading/loading.jsx";
-import Searchbar from "../searchbar/searchbar.jsx";
+import useAxios from "../../hooks/useAxios.js";
 
 const CategoryList = ({filterItems, children}) => {
 
-    const [loading, setLoading] = useState(true);
-    const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            const response = await axios.get('/FoodCategory/categories');
-            setCategories(response.data);
-            setLoading(false);
-        }
-        fetchCategories();
-    }, []);
+    const [categories, , loading,] = useAxios({
+        url: '/FoodCategory/categories'
+    })
 
     return (
         <nav className='container mt-n5'>

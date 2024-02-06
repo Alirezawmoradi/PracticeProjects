@@ -1,16 +1,18 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://react-mini-projects-api.classbon.com';
+const instance = axios.create({
+    baseURL: 'https://react-mini-projects-api.classbon.com',
+});
 const useAxios = (axiosParams) => {
-    const [response, setResponse] = useState(null);
+    const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     const fetchData = async () => {
         try {
-            const response = axios.request(axiosParams);
-            setResponse(response);
+            const result = await instance.request(axiosParams);
+            setResponse(result.data);
         } catch (error) {
             setError(error);
         } finally {
@@ -20,7 +22,7 @@ const useAxios = (axiosParams) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
-    return {response, loading, error};
+    }, [axiosParams.url]);
+    return [response, error, loading];
 }
 export default useAxios;

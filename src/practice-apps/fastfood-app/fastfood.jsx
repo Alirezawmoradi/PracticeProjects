@@ -1,36 +1,25 @@
 import Header from "./components/header/header.jsx";
 import CategoryList from "./components/category-list/category-list.jsx";
-import {useEffect, useState} from "react";
-import axios from "../../core/axios.js";
+import {useState} from "react";
 import Loading from "./components/loading/loading.jsx";
 import FastFoodList from "./components/fastfood-list/fastfood-list.jsx";
 import Searchbar from "./components/searchbar/searchbar.jsx";
 import notFound from '../../assets/images/404.png'
+import useAxios from "./hooks/useAxios.js";
 
 const FastFood = () => {
-    const [loading, setLoading] = useState(false);
-    const [fastFoodItems, setFastFoodItems] = useState([]);
+    const [url, setUrl] = useState('/FastFood/list');
+    const [fastFoodItems, , loading] = useAxios({
+        url
+    })
 
-    const fetchData = async (categoryId = null) => {
-        setLoading(true);
-        const response = await axios.get(`/FastFood/list/${categoryId ? '?categoryId=' + categoryId : ''}`);
-        setLoading(false);
-        setFastFoodItems(response.data)
-    }
 
     const searchItems = async (term) => {
-        setLoading(true);
-        const response = await axios.get(`/FastFood/search/${term ? '?term=' + term : ''}`)
-        setLoading(false);
-        setFastFoodItems(response.data)
+        setUrl(`/FastFood/search/${term ? '?term=' + term : ''}`)
     }
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
     const filterItems = (categoryId) => {
-        fetchData(categoryId);
+        setUrl(`/FastFood/list/${categoryId ? '?categoryId=' + categoryId : ''}`)
     }
 
     return (
