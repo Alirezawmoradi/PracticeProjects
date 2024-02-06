@@ -2,7 +2,7 @@ import {HiShoppingCart} from 'react-icons/hi';
 import {useEffect, useState} from "react";
 import ImagePlaceholder from "../image-placeholder/image-placeholder.jsx";
 
-const FastFoodItems = ({name, price, ingredients, imageUrl}) => {
+const FastFoodItems = ({name, price, ingredients, imageUrl, delay}) => {
     const [imagePlaceholder, setImagePlaceholder] = useState(true);
 
     useEffect(() => {
@@ -10,7 +10,8 @@ const FastFoodItems = ({name, price, ingredients, imageUrl}) => {
     }, [imageUrl]);
 
     return (
-        <div className='card product-card h-100 border-0 shadow-sm pb-1'>
+        <div className='card product-card h-100 border-0 shadow-sm pb-1 fade-in-horiz'
+             style={{animationDelay: `${delay}s`}}>
             <span className='badge badge-end badge-shadow bg-success fs-md fw-medium'>
                 قیمت : {price.toLocaleString()} تومان
             </span>
