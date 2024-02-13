@@ -1,5 +1,22 @@
-export const CartIntroduction = () => {
-    return(
-        <h1>Cart Introduction App</h1>
+import useFoodData from "./hooks/useFoodData.jsx";
+
+
+const CartIntroduction = () => {
+    const [foodItems, loading,] = useFoodData({
+        url: '/FastFood/list',
+    })
+
+    return (
+        <ul>
+            {
+                foodItems.map((foods) => {
+                    return (
+                        <></>
+                    )
+                })
+            }
+        </ul>
     )
 }
+
+export default CartIntroduction;
