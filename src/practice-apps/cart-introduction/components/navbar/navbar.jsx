@@ -10,7 +10,7 @@ export const Navbar = () => {
                         <RiShoppingCartLine className='navbar-tool-icon'/>
                     </div>
                 </a>
-                <p className='h3 mb-3 text-light'>useContext and useReducer</p>
+                <p className='h3 mb-3 text-light mt-3'>useContext and useReducer</p>
             </div>
         </div>
     )
