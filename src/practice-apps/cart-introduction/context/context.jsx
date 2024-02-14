@@ -1,6 +1,5 @@
 import {createContext, useContext, useReducer} from "react";
 import reducer from "./reducer.js";
-import foodItems from './../cart-introduction.jsx'
 
 const CartContext = createContext();
 

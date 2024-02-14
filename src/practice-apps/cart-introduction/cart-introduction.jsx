@@ -3,7 +3,6 @@ import {Navbar} from "./components/navbar/navbar.jsx";
 import fastfoodItems from "../fastfood-app/components/fastfood-item/fastfood-items.jsx";
 import {SideBar} from "./components/sidebar/sidebar.jsx";
 import {CartItems} from "./components/cart-item/cart-items.jsx";
-import {useCartContext} from "./context/context.jsx";
 import {RiShoppingCartLine} from "react-icons/ri";
 
 
