@@ -29,7 +29,7 @@ const CartIntroduction = () => {
                                 fastfoodItems.length > 0 ?
                                     <>
                                         <div className='col-lg-8 col-md-7 pt-sm-5'>
-                                            {loading ? <Loading theme='dark'/>
+                                            {loading ? <Loading theme='primary'/>
                                                 :
                                                 foodItems.map((items) => {
                                                     return <CartItems key={items.id} {...items}/>
