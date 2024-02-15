@@ -4,6 +4,7 @@ import fastfoodItems from "../fastfood-app/components/fastfood-item/fastfood-ite
 import {SideBar} from "./components/sidebar/sidebar.jsx";
 import {CartItems} from "./components/cart-item/cart-items.jsx";
 import {RiShoppingCartLine} from "react-icons/ri";
+import Loading from "../fastfood-app/components/loading/loading.jsx";
 
 
 const CartIntroduction = () => {
@@ -28,7 +29,8 @@ const CartIntroduction = () => {
                                 fastfoodItems.length > 0 ?
                                     <>
                                         <div className='col-lg-8 col-md-7 pt-sm-5'>
-                                            {
+                                            {loading ? <Loading theme='dark'/>
+                                                :
                                                 foodItems.map((items) => {
                                                     return <CartItems key={items.id} {...items}/>
                                                 })
