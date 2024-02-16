@@ -1,13 +1,14 @@
 import {Navbar} from "./components/navbar/navbar.jsx";
 import {SideBar} from "./components/sidebar/sidebar.jsx";
 import {CartItems} from "./components/cart-item/cart-items.jsx";
-import {RiShoppingCartLine} from "react-icons/ri";
 import Loading from "../fastfood-app/components/loading/loading.jsx";
 import {useCartContext} from "./context/context.jsx";
+import {EmptyCart} from "./components/empty-cart/empty-cart.jsx";
 
 
 const CartIntroduction = () => {
     const {foodItems, loading} = useCartContext();
+
     return (
         <>
             <Navbar/>
@@ -24,14 +25,22 @@ const CartIntroduction = () => {
                         <div className='row'>
                             <div className='col-lg-8 col-md-7 pt-sm-5'>
                                 {
-                                    loading ? <Loading theme='primary'/>
+                                    loading ?
+                                        <div className='d-flex justify-content-center align-items-center'>
+                                            <Loading theme='primary'/>
+                                        </div>
                                         :
                                         foodItems.map((items) => {
                                             return <CartItems key={items.id} {...items}/>
                                         })
                                 }
                             </div>
-                            <SideBar/>
+                            {
+                                foodItems.length === 0 && !loading && <EmptyCart/>
+                            }
+                            {
+                                foodItems.length > 0 && <SideBar/>
+                            }
                         </div>
                     </div>
                 </div>
