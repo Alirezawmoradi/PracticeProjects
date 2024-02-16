@@ -33,8 +33,11 @@ const CartProvider = ({children}) => {
         dispatch({type: 'REMOVE', payload: id})
     }
 
+    const changeQuantity = changeObj => {
+        dispatch({type: 'CHANGE_QUANTITY', payload: changeObj})
+    }
     return (
-        <CartContext.Provider value={{...state, clearCart, remove}}>
+        <CartContext.Provider value={{...state, clearCart, remove, changeQuantity}}>
             {children}
         </CartContext.Provider>
     )

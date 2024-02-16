@@ -11,6 +11,14 @@ const reducer = (state, action) => {
                 ...state,
                 foodItems: state.foodItems.filter((item) => item.id !== action.payload)
             };
+        case 'CHANGE_QUANTITY':
+            const tempCart = state.foodItems.map((item) => {
+                if (item.id === action.payload.id && action.payload.quantity > 0) {
+                    return {...item, quantity: action.payload.id}
+                }
+                return item
+            })
+            return {...state, foodItems: tempCart}
     }
 }
 export default reducer;
