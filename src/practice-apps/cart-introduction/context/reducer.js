@@ -2,6 +2,11 @@ const reducer = (state, action) => {
     switch (action.type) {
         case 'CLEAR_CART':
             return {...state}
+        case 'REMOVE':
+            return {
+                ...state,
+                cart: state.cart.filter((item) => item.id !== action.payload)
+            };
     }
 }
 export default reducer;
