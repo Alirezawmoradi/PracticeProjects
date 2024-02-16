@@ -1,17 +1,29 @@
-import {createContext, useContext, useReducer} from "react";
+import {createContext, useContext, useEffect, useReducer} from "react";
 import reducer from "./reducer.js";
+import useFoodData from "./../hooks/useFoodData.jsx";
 
 const CartContext = createContext();
 
-const initialState = {
-    loading: false,
-    total: 0,
-    amount: 0,
-}
-
 const CartProvider = ({children}) => {
+    const [foodItems, loading, error] = useFoodData({url: '/FastFood/list'});
+
+    const initialState = {
+        loading: loading,
+        total: 0,
+        amount: 0,
+        foodItems: foodItems
+    }
 
     const [state, dispatch] = useReducer(reducer, initialState);
+
+    useEffect(() => {
+        dispatch({type: 'SET_LOADING', payload: loading})
+    }, [foodItems]);
+
+    useEffect(() => {
+        dispatch({type: 'SET_FOOD_ITEMS', payload: foodItems});
+    }, [foodItems]);
+
 
     const clearCart = () => {
         dispatch({type: 'CLEAR_CART'});
