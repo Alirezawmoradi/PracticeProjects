@@ -14,7 +14,7 @@ const reducer = (state, action) => {
         case 'CHANGE_QUANTITY':
             const tempCart = state.foodItems.map((item) => {
                 if (item.id === action.payload.id && action.payload.quantity > 0) {
-                    return {...item, quantity: action.payload.id}
+                    return {...item, quantity: action.payload.quantity}
                 }
                 return item
             })
