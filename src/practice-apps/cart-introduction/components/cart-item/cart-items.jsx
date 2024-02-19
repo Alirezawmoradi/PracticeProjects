@@ -1,7 +1,7 @@
 import {RiCloseCircleLine} from "react-icons/ri";
 import {useCartContext} from "../../context/context.jsx";
 
-export const CartItems = ({id, imageUrl, name, price, quantity = 1}) => {
+export const CartItems = ({id, imageUrl, name, price, quantity}) => {
     const {remove, changeQuantity} = useCartContext();
     return (
         <div className='d-flex justify-content-between align-items-center'>

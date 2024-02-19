@@ -3,7 +3,8 @@ const reducer = (state, action) => {
         case 'SET_LOADING':
             return {...state, loading: action.payload}
         case 'SET_FOOD_ITEMS':
-            return {...state, foodItems: action.payload};
+            const foodItemsWithQuantity = action.payload.map(item => ({...item, quantity: 0}));
+            return {...state, foodItems: foodItemsWithQuantity};
         case 'CLEAR_CART':
             return {...state, foodItems: []}
         case 'REMOVE':
@@ -20,8 +21,8 @@ const reducer = (state, action) => {
             })
             return {...state, foodItems: tempCart}
         case 'GET_TOTALS': {
-            let {total, quantity} = state.foodItems.reduce((foodItemsTotal, foodItem) => {
-                const {price, quantity} = foodItem;
+            let {total, quantity} = state.foodItems.reduce((foodItemsTotal, foodItems) => {
+                const {price, quantity} = foodItems;
                 const itemTotal = price * quantity;
                 foodItemsTotal.total += itemTotal;
                 foodItemsTotal.quantity += quantity;
