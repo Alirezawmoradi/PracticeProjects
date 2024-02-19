@@ -36,6 +36,11 @@ const CartProvider = ({children}) => {
     const changeQuantity = changeObj => {
         dispatch({type: 'CHANGE_QUANTITY', payload: changeObj})
     }
+
+    useEffect(() => {
+        dispatch({type: 'GET_TOTALS'});
+    }, [state.foodItems]);
+
     return (
         <CartContext.Provider value={{...state, clearCart, remove, changeQuantity}}>
             {children}

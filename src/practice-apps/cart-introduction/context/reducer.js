@@ -19,6 +19,19 @@ const reducer = (state, action) => {
                 return item
             })
             return {...state, foodItems: tempCart}
+        case 'GET_TOTALS': {
+            let {total, quantity} = state.foodItems.reduce((foodItemsTotal, foodItem) => {
+                const {price, quantity} = foodItem;
+                const itemTotal = price * quantity;
+                foodItemsTotal.total += itemTotal;
+                foodItemsTotal.quantity += quantity;
+                return foodItemsTotal;
+            }, {
+                total: 0,
+                quantity: 0
+            });
+            return {...state, total, quantity}
+        }
     }
 }
 export default reducer;
