@@ -1,5 +1,7 @@
+import {HeroSection} from "./compnents/hero-section.jsx";
+
 export const InfiniteScroll = () => {
-    return(
-        <h4>Infinite Scroll Concept Practice App</h4>
+    return (
+        <HeroSection/>
     )
 }
