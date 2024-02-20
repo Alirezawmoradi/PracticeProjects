@@ -14,7 +14,7 @@ const useCommentsData = (axiosParams) => {
         try {
             setLoading(true);
             const response = await instance.request(axiosParams);
-            setComments(response.data)
+            setComments((oldData) => [...oldData, ...response.data])
         } catch (e) {
             setError(error)
         } finally {
@@ -24,7 +24,7 @@ const useCommentsData = (axiosParams) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [comments.page]);
 
     return {comments, loading, error};
 }
