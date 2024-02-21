@@ -7,13 +7,11 @@ export const InfiniteScroll = () => {
     const [page, setPage] = useState(1);
     const {comments, loading,} = useCommentsData({
         url: `/Comments/${page}`
-    }, {
-        page: page
     })
     const [lastElement, setLastElement] = useState(null);
     const observerRef = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-            setPage((currentPage) => currentPage + 1)
+            setPage(page + 1)
         }
     })
     useEffect(() => {
@@ -32,9 +30,9 @@ export const InfiniteScroll = () => {
             <div className='row'>
                 <div className='col-12 pt-5'>
                     {
-                        comments.map((comment) => {
+                        comments.map((comment,index) => {
                             return (
-                                <div key={comment.id} ref={setLastElement}>
+                                <div key={index} ref={setLastElement}>
                                     <Comments {...comment}/>
                                 </div>
                             )

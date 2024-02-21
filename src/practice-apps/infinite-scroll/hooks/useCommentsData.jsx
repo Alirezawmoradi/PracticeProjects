@@ -24,7 +24,7 @@ const useCommentsData = (axiosParams) => {
 
     useEffect(() => {
         fetchData();
-    }, [comments.page]);
+    }, [axiosParams.url]);
 
     return {comments, loading, error};
 }
